@@ -1,0 +1,1 @@
+This tutorial was a quick introduction to using VS Code.

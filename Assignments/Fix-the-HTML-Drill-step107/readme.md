@@ -1,0 +1,1 @@
+In this assignment I manually fixed some issues in an error-filled html code provided.
