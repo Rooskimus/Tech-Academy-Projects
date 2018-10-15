@@ -15,12 +15,236 @@
     <!-- Page content -->
     <div class="container">
         
+      <!-- navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">
+          <img src="./img/movie_logo.gif" width="60" height="58" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#showtimes">Showtimes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#deals">Deals</a>
+            </li>
+            <!-- Commenting out unused template code -->
+            <!-- 
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+                /a>
+              
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+             -->
+          </ul>
+          <form class="form-inline my-2 my-lg-0 d-none d-md-block">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <!-- /navigation -->
+      
+      <!-- Jumobtron -->
+    <div class="jumbotron jumbotron-fluid text-center bg-info d-none d-md-block" id="home">
+      <div class="container">
+        <h1 class="display-2">Academy Cinemas</h1>
+        <p class="lead">Sit back, relax and enjoy the show...</p>
+      </div>
+    </div>
+    <!-- /Jumbotron -->
 
+    <!-- Main Content -->
+    <div class="container my-5">     
+      <div class="row">
+        <div class="col-md-4" id="aboutacademy">
+          <h3 id="about">About Academy Cinemas</h3>
+          <img class="img-fluid" src="./img/pdx.jpg" alt="">
+          <p>Located in the beautiful Portland, Oregons Pearl district!</p>
+          <p>Our reels have been spinning since 1959.  Showing our guests a great time is our passion and seeing their smiles is what we're all about.</p>
+        </div>
+        <div class="col-md-4">
+          <h3>Accomodations</h3>
+          <p>All of our auditoriums are equipped with brand new Christie 3D&reg; sounds systems!</p>
+          <p>Relax in our extra-wide, plush-cushioned recliners.  Seating is on a first-come first-served basis.  Our seating arrangement is disability friendly</p>
+          <p>Our auditoriums are climate controlled to approximately 72&deg; year-round.</p>
+        </div>
+        <div class="col-md-4">
+          <h3>Showtimes</h3>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a class="nav-link" href="#showtimes">Kong Skull Island</a>
+            </li>
+            <li class="list-group-item">
+              <a class="nav-link" href="#showtimes">Ghost in the Shell</a>
+            </li>
+            <li class="list-group-item">
+              <a class="nav-link" href="#showtimes">Beauty and the Beast</a>
+            </li>
+            <li class="list-group-item">
+              <a class="nav-link" href="#showtimes2">Life (2017)</a>
+            </li>
+            <li class="list-group-item">
+              <a class="nav-link" href="#showtimes2">Logan (2017)</a>
+            </li>
+            <li class="list-group-item">
+              <a class="nav-link" href="#showtimes2">Power Rangers</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Main Content -->
 
+    <!-- Showtimes -->
+    <div class="card-group my-3" id="showtimes">
+      <div class="card">
+        <img class="card-img-top" src="./img/kongskullisland.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Kong Skull Island</h5>
+          <span class="badge badge-pill badge-info">12:50</span>
+          <span class="badge badge-pill badge-info">1:30</span>
+          <span class="badge badge-pill badge-info">2:15</span>
+          <span class="badge badge-pill badge-info">4:30</span>
+          <span class="badge badge-pill badge-info">5:10</span>
+          <span class="badge badge-pill badge-info">7:00</span>
+          <span class="badge badge-pill badge-info">7:50</span>
+          <span class="badge badge-pill badge-info">8:45</span>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="./img/ghostintheshell.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Ghost in the Shell</h5>
+          <span class="badge badge-pill badge-info">11:00</span>
+          <span class="badge badge-pill badge-info">2:15</span>
+          <span class="badge badge-pill badge-info">5:45</span>
+          <span class="badge badge-pill badge-info">8:30</span>
+          <span class="badge badge-pill badge-info">9:10</span>
+          <span class="badge badge-pill badge-info">10:00</span>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="./img/beautyandthebeast.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Beauty and the Beast</h5>
+          <span class="badge badge-pill badge-info">12:50</span>
+          <span class="badge badge-pill badge-info">3:00</span>
+          <span class="badge badge-pill badge-info">5:15</span>
+          <span class="badge badge-pill badge-info">7:30</span>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="card-group" id="showtimes2">
+      <div class="card">
+        <img class="card-img-top" src="./img/life.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Life (2017)</h5>
+          <span class="badge badge-pill badge-info">12:50</span>
+          <span class="badge badge-pill badge-info">3:00</span>
+          <span class="badge badge-pill badge-info">5:15</span>
+          <span class="badge badge-pill badge-info">6:45</span>
+          <span class="badge badge-pill badge-info">7:30</span>
+          <span class="badge badge-pill badge-info">9:10</span>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="./img/logan.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Logan (2017)</h5>
+          <span class="badge badge-pill badge-info">12:30</span>
+          <span class="badge badge-pill badge-info">2:10</span>
+          <span class="badge badge-pill badge-info">4:15</span>
+          <span class="badge badge-pill badge-info">6:30</span>
+          <span class="badge badge-pill badge-info">8:00</span>
+          <span class="badge badge-pill badge-info">9:30</span>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="./img/powerrangers.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Power Rangers</h5>
+          <span class="badge badge-pill badge-info">11:50</span>
+          <span class="badge badge-pill badge-info">2:30</span>
+          <span class="badge badge-pill badge-info">4:30</span>
+          <span class="badge badge-pill badge-info">6:00</span>
+          <span class="badge badge-pill badge-info">8:30</span>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <!-- /Showtimes -->
+    
+    <!-- Signup -->
+    <form class="container py-4 col-md-12 text-center" id="deals">
+      <h4 class="my-3">Stay current on the movies!</h4>
+      <div class="form-group row justify-content-center">
+          <div class="col-sm-4">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-outline-primary">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <!-- /Signup -->
 
-
-
-
+    <!-- Footer-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <small><a class="nav-link" href="#">Movie Rewards</a></small>
+          </li>
+          <li class="nav-item">
+            <small><a class="nav-link" href="#">Movies@news.org</a></small>
+          </li>
+          <li class="nav-item">
+            <small><a class="nav-link" href="#">Info@academycinemas.com</a></small>
+          </li>
+          <li class="nav-item">
+            <small><a class="nav-link" href="#">Academy Cinemas&reg;</a></small>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /Footer-->
 
 
     </div>
