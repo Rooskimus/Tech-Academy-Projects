@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h1 id="text"></h1>
+
+        <p class="text2"> Some text</p>
+        <p class="text2"> More text</p>
+        <p class="text2"> Even more text</p>
+        <p class="text2"> Last bit of text</p>
+
+        <script>
+            var text = document.getElementById("text");
+            text.innerHTML = "Hello World"
+
+            var text2 = document.getElementsByClassName("text2")
+            text2[1].style.color = "red";
+            
+            //document.getElementsByName()
+            //document.getElementsByTagName()
+        </script>
+    </body>
+</html>
