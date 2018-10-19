@@ -1,0 +1,1 @@
+This tutorial broke down the basic steps to use AJAX to import dynamic content.  I used a XAMP local server to test it.
