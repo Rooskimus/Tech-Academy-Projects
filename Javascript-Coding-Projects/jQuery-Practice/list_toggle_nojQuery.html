@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        commenting out jQuery so we can write our own JavaScript-->
+        <style>li{list-style: none;}</style>
+    </head>
+    <body>
+
+        <p>Menu Items:</p>
+        <ul class="menu">
+            <li>Item One</li>
+            <li>Item Two</li>
+            <li>Item Three</li>
+            <li>Item Four</li>
+            <li>Item Five</li>
+            <li>Item Six</li>
+            <li>Item Seven</li>
+            <li>Item Eight</li>
+            <li>Item Nine</li>
+            <li>Item Ten</li>
+        </ul><br><br>
+
+        <button onClick="collapse()">Click Me!</button>
+
+        <script>
+            // Commenting out jQuery script to show manual JavaScript Below
+            //$(document).ready(function() {
+            //    $("button").click(function() {
+            //        $(".menu").slideToggle("slow");
+            //    });
+            //});
+            
+            
+            var list = document.getElementsByTagName("li");
+            function collapse() {
+                for(i = 0; i < list.length; i++) {
+                    if (list[i].style.display === "none") {
+                        list[i].style.display = "block";
+                        
+                    } else {
+                    list[i].style.display = "none";
+                    
+                    }
+                };
+            };
+            
+        
+        </script>
+
+    </body>
+</html>
