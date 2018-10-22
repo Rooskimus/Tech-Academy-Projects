@@ -1,0 +1,22 @@
+h1 {
+    font-family: roboto;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.jumbotron {
+    margin-top: 6%;
+}
+
+@media only screen and (max-width: 767px) {
+    #aboutacademy {
+        padding-top: 10%;
+    }
+}
