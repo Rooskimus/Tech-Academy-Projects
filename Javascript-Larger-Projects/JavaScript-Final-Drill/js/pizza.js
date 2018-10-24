@@ -134,7 +134,7 @@ function makeReceipt() {
     var costText = "$" + rTotal.toFixed(2);
     var totalArray = [size, costOne, cheese, costTwo, crust, costThree, sauce, "0", selectedMeat, meatTotal, selectedVeg, vegTotal, totalText, costText];
     for(i=0; i < totalArray.length; i++){
-        var ID = "C"+ i;
+        var ID = "C"+ i; // This gives the names of the TD tags to the function in order.
         document.getElementById(ID).innerHTML= totalArray[i];
         }
 }

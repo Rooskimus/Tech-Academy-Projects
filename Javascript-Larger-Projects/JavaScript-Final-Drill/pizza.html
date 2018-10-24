@@ -4,8 +4,10 @@
     <title>Order a Pizza!</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body class="bg-image">
     <div class="container">
+        <p id="restName">~ La Torta Unta ~</p>
+        <h2>Benvenuto, what can we make for you today:</h2>
         <!-- Pizza Size -->
         <div class="accordion-container">
             <button class="accordion" id="sizeSelect"></button>
@@ -87,48 +89,46 @@
             </div>
 
         <h4 id="total">Total: </h4>
-        <button id="placeOrder" onclick="makeReceipt()">Place Order</button>
-        <div>
+        <button class="accordion" id="placeOrder" onclick="makeReceipt()">Place Order</button>
+        <div class="panel">
             <table id="receipt">
                 <tr>
-                    <td>Size: </td>
-                    <td id="C0">1</td>
-                    <td id="C1">1</td>
+                    <td class="col1">Size: </td>
+                    <td class="col2" id="C0">1</td>
+                    <td class="col3" id="C1">1</td>
                 </tr>
                 <tr>
-                    <td>Cheese: </td>
-                    <td id="C2">2</td>
-                    <td id="C3">2</td>
+                    <td class="col1">Cheese: </td>
+                    <td class="col2" id="C2">2</td>
+                    <td class="col3" id="C3">2</td>
                 </tr>
                 <tr>
-                    <td>Crust: </td>
-                    <td id="C4">3</td>
-                    <td id="C5">3</td>
+                    <td class="col1">Crust: </td>
+                    <td class="col2" id="C4">3</td>
+                    <td class="col3" id="C5">3</td>
                 </tr>
                 <tr>
-                    <td>Sauce: </td>
-                    <td id="C6">4</td>
-                    <td id="C7">4</td>
+                    <td class="col1">Sauce: </td>
+                    <td class="col2" id="C6">4</td>
+                    <td class="col3" id="C7">4</td>
                 </tr>
                 <tr>
-                    <td>Meats: </td>
-                    <td id="C8">5</td>
-                    <td id="C9">5</td>
+                    <td class="col1">Meats: </td>
+                    <td class="col2" id="C8">5</td>
+                    <td class="col3" id="C9">5</td>
                 </tr>
                 <tr>
-                    <td>Veggies: </td>
-                    <td id="C10">6</td>
-                    <td id="C11">6</td>
+                    <td class="col1">Veggies: </td>
+                    <td class="col2" id="C10">6</td>
+                    <td class="col3" id="C11">6</td>
                 </tr>
                 <tr>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td id="C12">7</td>
-                    <td></td>
-                    <td id="C13">7</td>
+                    <td class="col1" id="C12">7</td>
+                    <td class="col2"></td>
+                    <td class="col3" id="C13">7</td>
                 </tr>
             </table>
+          <p id="thanks">Thank you!</p>
         </div>
     </div>
 

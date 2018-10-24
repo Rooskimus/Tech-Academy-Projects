@@ -6,32 +6,96 @@ ul li {
     font-style: italic;
 }
 
+#restName {
+    font-weight: bolder;
+    font-size: 3em;
+    color: #fff;
+    margin-left: 2%;
+}
+
+h2 {
+    color: #fff;
+    margin-left: 2%;
+}
+
+.bg-image {
+  background-image: url(../img/pizza.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body {
+    overflow: scroll; /*To avoid image resizing when scrollbar appears, we force the scrollbar*/
+}
+
 /* Accordion Buttons */
 
 /* Style the accordion buttons */
 .accordion {
-    background-color: #eee;
-    color: #444;
+    background-color: #a22005;
+    color: #fff;
+    text-shadow: 2px, 2px, 3px, rgba(0,0,0,0.5);
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 55%;
     text-align: left;
     border: none;
     outline:none;
     transition: 0.4s;
+    border: 1px;
+    border-radius: 5px;
+    margin-bottom: 1px;
+    opacity: .9;
 }
 
 /* Add a background color to the button if clicked or hovered */
 .active, .accordion:hover {
-    background-color: #ccc;
+    background-color:#711703; 
 }
 
 /* Style the accordion panel */
 .panel {
     padding: 0 18px;
-    background-color: #fff;
+    background-color: /*#f0ce91;*/#5f6116;
+    color: #dadbb6;
+    width: 52%;
+    border-bottom-right-radius: 10px;
     /*display: none;*/
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    opacity: .8;
+    
+}
+
+#total {
+  color: white;
+}
+
+#placeOrder {
+  border: solid;
+  border-color: darkred;
+  width: 12%;
+  min-width: 138px;
+  text-align: center;
+  font-size: 105%;
+  font-weight: 550
+}
+
+#receipt {
+  width: 100%;
+}
+
+#receipt .col1 {
+  text-align:left;
+  width:15%;
+}
+
+#receipt tr:nth-child(even){background-color: #7a7c1b;}
+
+#thanks {
+  font-size: 110%;
+  font-weight: 600;
+  text-shadow: 5, 5, 5;
 }
