@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Order a Pizza!</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Pizza Size -->
+        <div class="accordion-container">
+            <button class="accordion" id="sizeSelect"></button>
+            <div class="panel">
+                <ul onchange="runningTotal()">
+                    <li><input type="radio" name="size" onchange="accHeadUpdate1()" value="Personal">Personal ($6.00)</li>
+                    <li><input type="radio" name="size" onchange="accHeadUpdate1()" value="Medium" checked="checked">Medium ($10.00)</li>
+                    <li><input type="radio" name="size" onchange="accHeadUpdate1()" value="Large">Large ($14.00)</li>
+                    <li><input type="radio" name="size" onchange="accHeadUpdate1()" value="Extra Large">Extra Large ($16.00)</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Cheese Selection -->
+        <div class="accordion-container">
+            <button class="accordion" id="cheeseSelect"></button>
+            <div class="panel">
+                <ul onchange="runningTotal()">
+                    <li><input type="radio" name="cheese" onchange="accHeadUpdate2()" value="No Cheese">No Cheese (+ $0)</li>
+                    <li><input type="radio" name="cheese" onchange="accHeadUpdate2()" value="Regular" checked="checked">Regular (+ $0)</li>
+                    <li><input type="radio" name="cheese" onchange="accHeadUpdate2()" value="Extra Cheese">Extra Cheese (+ $3.00)</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Crust Selection -->
+        <div class="accordion-container">
+            <button class="accordion" id="crustSelect"></button>
+            <div class="panel">
+                <ul onchange="runningTotal()">
+                    <li><input type="radio" name="crust" onchange="accHeadUpdate3()" value="Plain" checked="checked">Plain (+ $0)</li>
+                    <li><input type="radio" name="crust" onchange="accHeadUpdate3()" value="Garlic Butter">Garlic Butter (+ $0)</li>
+                    <li><input type="radio" name="crust" onchange="accHeadUpdate3()" value="Spicy">Spicy (+ $0)</li>
+                    <li><input type="radio" name="crust" onchange="accHeadUpdate3()" value="House Special">House Special (+ $0)</li>
+                    <li><input type="radio" name="crust" onchange="accHeadUpdate3()" value="Cheese Stuffed">Cheese Stuffed (+ $3.00)</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Sauce Selection -->
+        <div class="accordion-container">
+            <button class="accordion" id="sauceSelect"></button>
+            <div class="panel">
+                <ul onchange="runningTotal()">
+                    <li><input type="radio" name="sauce" onchange="accHeadUpdate4()" value="No Sauce">No Sauce</li>
+                    <li><input type="radio" name="sauce" onchange="accHeadUpdate4()" value="Marinara" checked="checked">Marinara</li>
+                    <li><input type="radio" name="sauce" onchange="accHeadUpdate4()" value="White Sauce">White Sauce</li>
+                    <li><input type="radio" name="sauce" onchange="accHeadUpdate4()" value="Barbecue Sauce">Barbecue Sauce</li>
+                    <p class="italic">All sauces are included in the base price!</p>
+                </ul>
+            </div>
+        </div>
+        <div class="accordion-container">
+            <button class="accordion" id="meatSelect"></button>
+            <div class="panel">
+                <ul onchange="runningTotal()">
+                    <li><input type="checkbox" name="meat" onchange="accHeadUpdate5()" value="Pepperoni" checked="checked">Pepperoni</li>
+                    <li><input type="checkbox" name="meat" onchange="accHeadUpdate5()" value="Sausage">Sausage</li>
+                    <li><input type="checkbox" name="meat" onchange="accHeadUpdate5()" value="Canadian Bacon">Canadian Bacon</li>
+                    <li><input type="checkbox" name="meat" onchange="accHeadUpdate5()" value="Ground Beef">Ground Beef</li>
+                    <li><input type="checkbox" name="meat" onchange="accHeadUpdate5()" value="Anchovy">Anchovy</li>
+                    <li><input type="checkbox" name="meat" onchange="accHeadUpdate5()" value="Chicken">Chicken</li>
+                </ul>
+                <p class="italic">One meat topping included, + $1 per extra!</p>
+            </div>
+        </div>
+        <div class="accordion-container">
+                <button class="accordion" id="vegSelect"></button>
+                <div class="panel">
+                    <ul onchange="runningTotal()">
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Tomatoes">Tomatoes</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Onions">Onions</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Olives" checked="checked">Olives</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Green Peppers">Green Peppers</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Mushrooms">Mushrooms</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Pineapple">Pineapple</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Spinach">Spinach</li>
+                        <li><input type="checkbox" name="veg" onchange="accHeadUpdate6()" value="Jalapeno">Jalapeno</li>
+                    </ul>
+                    <p class="italic">One veggie topping included, + $1 per extra!</p>
+                </div>
+            </div>
+
+        <h4 id="total">Total: </h4>
+        <button id="placeOrder" onclick="makeReceipt()">Place Order</button>
+        <div>
+            <table id="receipt">
+                <tr>
+                    <td>Size: </td>
+                    <td id="C0">1</td>
+                    <td id="C1">1</td>
+                </tr>
+                <tr>
+                    <td>Cheese: </td>
+                    <td id="C2">2</td>
+                    <td id="C3">2</td>
+                </tr>
+                <tr>
+                    <td>Crust: </td>
+                    <td id="C4">3</td>
+                    <td id="C5">3</td>
+                </tr>
+                <tr>
+                    <td>Sauce: </td>
+                    <td id="C6">4</td>
+                    <td id="C7">4</td>
+                </tr>
+                <tr>
+                    <td>Meats: </td>
+                    <td id="C8">5</td>
+                    <td id="C9">5</td>
+                </tr>
+                <tr>
+                    <td>Veggies: </td>
+                    <td id="C10">6</td>
+                    <td id="C11">6</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td id="C12">7</td>
+                    <td></td>
+                    <td id="C13">7</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="./js/pizza.js"></script>
+</body>
