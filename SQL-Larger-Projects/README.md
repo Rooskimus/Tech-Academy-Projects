@@ -1,0 +1,1 @@
+This folder is for larger projects in the SQL course at the Tech Academy.
