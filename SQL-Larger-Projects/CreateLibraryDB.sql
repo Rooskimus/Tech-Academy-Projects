@@ -1,0 +1,59 @@
+USE [master]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+
+CREATE DATABASE [db_library]
+GO
+
+USE [db_library]
+GO
+
+CREATE TABLE [library_branch](
+	BranchID INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	BranchName VARCHAR(50) NOT NULL,
+	[Address] VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE [publisher](
+	PublisherName VARCHAR(150) NOT NULL PRIMARY KEY,
+	[Address] VARCHAR (150) NOT NULL,
+	Phone VARCHAR (15) NOT NULL
+);
+
+CREATE TABLE [books](
+	BookID INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+	Title VARCHAR(150) NOT NULL,
+	PublisherName VARCHAR(150) NOT NULL FOREIGN KEY REFERENCES [publisher]([PublisherName]) ON UPDATE CASCADE,
+);
+
+CREATE TABLE [book_authors](
+	BookID INT NOT NULL FOREIGN KEY REFERENCES [books]([BookID]),
+	AuthorName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE [book_copies](
+	BookID INT NOT NULL FOREIGN KEY REFERENCES [books]([BookID]),
+	BranchID INT NOT NULL FOREIGN KEY REFERENCES [library_branch]([BranchID]),
+	Number_Of_Copies INT NOT NULL
+);
+
+CREATE TABLE [borrower](
+	CardNo INT NOT NULL PRIMARY KEY IDENTITY (100001, 1),
+	Name VARCHAR(100) NOT NULL,
+	[Address] VARCHAR(150) NOT NULL,
+	Phone VARCHAR(15) NOT NULL
+);
+
+USE db_library
+GO
+
+CREATE TABLE [book_loans](
+	BookID INT NOT NULL FOREIGN KEY REFERENCES [books]([BookID]),
+	BranchID INT NOT NULL FOREIGN KEY REFERENCES [library_branch]([BranchID]),
+	CardNo INT NOT NULL FOREIGN KEY REFERENCES [borrower]([CardNo]),
+	DateOut DATE NOT NULL,
+	DateDue DATE NOT NULL
+);
