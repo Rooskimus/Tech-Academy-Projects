@@ -1,0 +1,1 @@
+This drill required I make a while and a do while loop.  I chose to make a number guessing game which would tell you lower or higher based on your guess until you get it correct for the do-while loop.  The while loop is my error-prevention subroutine which ensures only valid numbers are entered.
