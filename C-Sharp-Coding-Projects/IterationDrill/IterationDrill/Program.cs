@@ -111,16 +111,21 @@ namespace IterationDrill
             // To make this more interesting, let's make everything have a duplicate!
             pokemons.AddRange(pokemons); //recursive list ERMAGERD!
             List<string> distinctPokemons = new List<string>(); // Creating a new list to hold the names of pokemon that have appeared once already.
+            indexSlider = 0; // Reset our index slider to zero
+            
             foreach (string pokemon in pokemons)
             {
-               if (!distinctPokemons.Exists(x => x == pokemon)) // Check if the pokemon is on our new list.  If not...
+                int dupeIndex = pokemons.IndexOf(pokemon, indexSlider); // Declare our duplicate index
+                if (!distinctPokemons.Exists(x => x == pokemon)) // Check if the pokemon is on our new list.  If not...
                 {
-                    distinctPokemons.Add(pokemon); // Add it and...
-                    // Console.WriteLine(pokemon + " - This is the first one of these."); // It turns out the requirement was only for duplicates to be printed, so let's drop this!
+                    distinctPokemons.Add(pokemon); // Add it and...                    
+                    indexSlider = dupeIndex + 1; // slide our index...
+                    Console.WriteLine(pokemon + " - This is the first one of these."); // And print them to the screen.
                 }
                 else
-                {
-                    Console.WriteLine(pokemon + " - This is a duplicate of a previous pokemon."); // Otherwise, let the console know it's a duplicate.
+                {                    
+                    Console.WriteLine(pokemon + " - This is a duplicate of a previous pokemon.  It's in slot " + dupeIndex); // Let the console know it's a duplicate.
+                    indexSlider = dupeIndex + 1; // and slide our index.
                 }
             }
             Console.ReadLine();
