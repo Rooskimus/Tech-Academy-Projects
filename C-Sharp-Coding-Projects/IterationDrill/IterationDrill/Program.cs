@@ -107,7 +107,7 @@ namespace IterationDrill
             Console.ReadLine();
 
             // Loop for part 11
-            Console.WriteLine("And now I will reveal to you if I have duplicates of all of my pokemans.");
+            Console.WriteLine("And now I will reveal to you which pokemans I have duplicates of.");
             // To make this more interesting, let's make everything have a duplicate!
             pokemons.AddRange(pokemons); //recursive list ERMAGERD!
             List<string> distinctPokemons = new List<string>(); // Creating a new list to hold the names of pokemon that have appeared once already.
@@ -116,7 +116,7 @@ namespace IterationDrill
                if (!distinctPokemons.Exists(x => x == pokemon)) // Check if the pokemon is on our new list.  If not...
                 {
                     distinctPokemons.Add(pokemon); // Add it and...
-                    Console.WriteLine(pokemon + " - This is the first one of these."); // Write it to the console.
+                    // Console.WriteLine(pokemon + " - This is the first one of these."); // It turns out the requirement was only for duplicates to be printed, so let's drop this!
                 }
                 else
                 {
