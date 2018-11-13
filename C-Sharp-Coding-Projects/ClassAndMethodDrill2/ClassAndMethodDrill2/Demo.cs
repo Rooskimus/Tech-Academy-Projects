@@ -11,6 +11,7 @@ namespace ClassAndMethodDrill2
         public void DemoMethod(int x, int y)
         {
             x = x * x;
+            Console.WriteLine("Math operation result: {0}", x);
             Console.WriteLine("Displaying parameter y: {0}", y);
         }
     }
