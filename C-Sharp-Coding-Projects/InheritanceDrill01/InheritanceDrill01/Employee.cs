@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace InheritanceDrill01
 {
-    public class Employee : Person
+    public class Employee<T> : Person
     {
         public int Id { get; set; }
+        public List<T> Things { get; set; }
 
-        public static bool operator == (Employee employeeOne, Employee employeeTwo)
+        public static bool operator == (Employee<T> employeeOne, Employee<T> employeeTwo)
         {
             return employeeOne.Id == employeeTwo.Id;
         }
 
-        public static bool operator != (Employee employeeOne, Employee employeeTwo)
+        public static bool operator != (Employee<T> employeeOne, Employee<T> employeeTwo)
         {
             return !(employeeOne == employeeTwo); // uses the above == operator
         }
