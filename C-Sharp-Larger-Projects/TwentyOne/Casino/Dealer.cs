@@ -22,7 +22,7 @@ namespace Casino
             Console.WriteLine(card);
             using (StreamWriter file = new StreamWriter(@"C:\Users\Roo\Desktop\Logs\log.txt", true))
             {
-               file.WriteLine(card + " Time Stamp: " + DateTime.Now);
+               file.Write(card + " Time Stamp: " + DateTime.Now);
             } //creating a using statment ensures our memory is cleaned up after the operation; this happens when a end curly brace is hit.
             Deck.Cards.RemoveAt(0);
         }

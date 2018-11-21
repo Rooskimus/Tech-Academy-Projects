@@ -22,10 +22,15 @@ namespace Casino.TwentyOne
             Dealer.Hand = new List<Card>();
             Dealer.Deck = new Deck();
             Dealer.Deck.Shuffle(5);
+            using (StreamWriter file = new StreamWriter(@"C:\Users\Roo\Desktop\Logs\log.txt", true))
+            {
+                file.WriteLine("-- New Hand --");
+            }
             Console.WriteLine("Place your bet: ");
             foreach (Player player in Players)
             {
                 int bet = AnswerChecker.IsInt(Console.ReadLine());
+                if (bet < 0) throw new FraudException("Negative bet attempted");
                 bool successfullyBet = player.Bet(bet);
                 if (!successfullyBet)
                 {
@@ -40,6 +45,10 @@ namespace Casino.TwentyOne
                 {
                     Console.Write("{0}: ", player.Name);
                     Dealer.Deal(player.Hand); // passing dealer's hand into the deal function
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Roo\Desktop\Logs\log.txt", true))
+                    {
+                        file.WriteLine(" was dealt to User {0} GUID {1}", player.Name, player.Id);
+                    }
                     if (i == 1)
                     {
                         bool blackJack = TwentyOneRules.CheckForBlackJack(player.Hand);
@@ -53,6 +62,10 @@ namespace Casino.TwentyOne
                 }
                 Console.Write("Dealer: ");
                 Dealer.Deal(Dealer.Hand);
+                using (StreamWriter file = new StreamWriter(@"C:\Users\Roo\Desktop\Logs\log.txt", true))
+                {
+                    file.WriteLine(" was dealt to the Dealer.");
+                }
                 if (i == 1)
                 {
                     bool blackJack = TwentyOneRules.CheckForBlackJack(Dealer.Hand);
@@ -91,6 +104,11 @@ namespace Casino.TwentyOne
                     else if (answer == "hit")
                     {
                         Dealer.Deal(player.Hand);
+                        using (StreamWriter file = new StreamWriter(@"C:\Users\Roo\Desktop\Logs\log.txt", true))
+                        {
+                            file.WriteLine(" was dealt to User {0} GUID {1}", player.Name, player.Id);
+                        }
+
                     }
                     bool busted = TwentyOneRules.IsBusted(player.Hand);
                     if (busted)
@@ -119,6 +137,10 @@ namespace Casino.TwentyOne
             {
                 Console.WriteLine("\nThe Dealer is hitting...");
                 Dealer.Deal(Dealer.Hand);
+                using (StreamWriter file = new StreamWriter(@"C:\Users\Roo\Desktop\Logs\log.txt", true))
+                {
+                    file.WriteLine(" was dealt to the Dealer.");
+                }
                 Dealer.IsBusted = TwentyOneRules.IsBusted(Dealer.Hand);
                 Dealer.Stay = TwentyOneRules.ShouldDealerStay(Dealer.Hand);
                 Console.WriteLine("The dealers hand is: ");
