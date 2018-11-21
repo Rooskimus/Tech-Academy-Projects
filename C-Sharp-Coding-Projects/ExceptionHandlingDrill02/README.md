@@ -1,1 +1,1 @@
-This drill was to test out declaring a variable constant, using the "var" variable type, and using a constructor which inherits from another constructor.  The rest is just me having fun.
+This drill was to test using multiple catches for a single try.
