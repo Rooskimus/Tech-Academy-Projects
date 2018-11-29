@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container bg-danger text-center col-lg-8 shadow  mb-3 rounded">
+    <h1 class="text-info">
+        Scam-Free Insurance Quote
+    </h1>
+    <h4 class="pb-3 text-dark">
+        It's not a scam, we <em>swear</em>!
+    </h4>
+</div>
+
+<div class="container col-8 align-content-center">
+    <div class="row align-content-center">
+        <h2>
+            Enter the information below for your free quote:
+        </h2>
+    </div>
+    @using (Html.BeginForm("GetQuote", "Home", FormMethod.Post))
+    {
+        <div class="form-group row no-gutters">
+            <div class="col-md">
+                <input name="FirstName" type="text" class="form-control" placeholder="First Name" />
+            </div>
+            <div class="col-md ml-md-1">
+                <input name="LastName" type="text" class="form-control" placeholder="Last Name" />
+            </div>
+        </div>
+        <div class="form-group row no-gutters">
+            <div class="col-md">
+                <input name="EmailAddress" type="email" class="form-control" placeholder="Email Address" />
+            </div>
+        </div>
+        <div class="row form-group no-gutters">
+            <div class="col-md-2">
+                <label for="DateOfBirth" class="col-form-label">Birth Date</label>
+            </div>
+            <div class="col-md-10">
+                <input name="DateOfBirth" type="date" class="form-control datepicker" placeholder="mm/dd/yyyy" />
+            </div>
+        </div>
+        <hr />
+        <div class="row form-group no-gutters">
+            <div class="col-lg-1">
+                <label for="CarYear" class="col-form-label">Year</label>
+            </div>
+            <div class="col-lg-3">
+                <input name="CarYear" type="text" class="form-control" placeholder="Year, ex: 2014" />
+            </div>
+            <div class="col-lg-1">
+                <label for="CarMake" class="col-form-label">Make</label>
+            </div>
+            <div class="col-lg-3">
+                <input name="CarMake" type="text" class="form-control" placeholder="Make, ex: Ford" />
+            </div>
+            <div class="col-lg-1">
+                <label for="CarModel" class="col-form-label">Model</label>
+            </div>
+            <div class="col-lg-3">
+                <input name="CarModel" type="text" class="form-control" placeholder="Model, ex: Focus" />
+            </div>
+        </div>
+        <div class="form-check form-check-inline">
+            <p>Have you ever had a DUI?</p>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="DUI" value="true" />
+            <label for="YesDUI" class="form-check-label" ml-1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="DUI" value="false" checked="checked"/>
+            <label for="NoDUI" class="form-check-label" ml-1">No</label>
+        </div>
+        <div class="row form-group no-gutters">
+            <div class="col-xl-8 col-lg-10">
+                <label for="Tickets" class="col-form-label">How many speeding tickets have you had in the last two years?</label>
+            </div>
+            <div class="col-lg">
+                <input name="Tickets"class="form-control" type="text" value="0" />
+            </div>
+        </div>
+        <div class="row form-group no-gutters">
+            <div class="col-xl-6 col-lg-8">
+                <label for="CoverageLevel" class="col-form-label">Please select coverage level: </label>
+            </div>
+            <div class="col-lg">
+                <select name="CoverageLevel" class="form-control">
+                    <option selected>Full Coverage</option>
+                    <option>Liability Only</option>
+                </select>
+            </div>
+        </div>
+        <div class="text-center">
+                <button type="submit" class="btn btn-danger w-50" >Submit</button>
+        </div>
+
+     }
+</div>
