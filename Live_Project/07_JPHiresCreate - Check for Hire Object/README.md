@@ -31,4 +31,4 @@ So this code was pretty straightforward, but testing it led me down a little rab
 	}     
 ```
 
-Now testing it was tricky because I needed to find examples in the database that fit the criteria; one with a JPHire object and one without.  The ApplicationUserId was what linked it all, but finding which table that pointed to was a bit tricky because it was made in a sub-Model folder that doesn't actually create its own table in the database.  But eventually I pieced it together and was able to grab the appropriate user names and test it.
+Now testing it was tricky because I needed to find examples in the database that fit the criteria; one with a JPHire object and one without.  The ApplicationUserId was what linked it all, but finding which table that pointed to was a bit tricky because it was made in within a CS file in the models that had a different name and generated two tables in the database. It turns out that it was part of the scaffolded code for user authentication that VS creates if you select that option.  Eventually I was able to follow the dots and grab the right user login info to test my change above, and it worked as intended.
