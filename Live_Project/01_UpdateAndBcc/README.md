@@ -1,15 +1,15 @@
 # Adding Two Methods to One Form Button
 
-A story I chose to tackle involved making a button that sends emails to a list of mailing addresses call a function that ensures the latest updated email information is pulled and then mails the list as a BCC.  It was a great opportunity to get some practice in HTML, MVC, and C#.  The original code was simply done in HTML:
+This story involved making a button that sends a list of emails to a function that ensures the latest updated email information is pulled and then mails the list as a BCC.  It was a great opportunity to get some practice in HTML, MVC, and C#.  The original code was simply done in HTML:
 
 ### Before:
 ```cshtml
- <form style="display: inline" action="mailto:?bcc=@emailList" method="post">
+<form style="display: inline" action="mailto:?bcc=@emailList" method="post">
         <button class="btn btn-primary">Email Students</button>
 </form>
 ```
 
-I decided my approach would be to create a new subroutine in the controller that performs both actions desired and call that.  My HTML portion became:
+I decided my approach would be to create a new subroutine in the controller that performs all of the actions desired and call that.  My HTML portion became:
 		
 ### After:
 
@@ -23,7 +23,7 @@ It honestly took me a while to find good way to hit the desired action in the co
 
 Next, I had to create my "UpdateAndBcc" subroutine in the controller.  I ended up with:
 
-### UpdateAndBCC Function:
+### UpdateAndBcc Function:
 
 ```cs
 public void UpdateAndBcc(string emailList)
@@ -83,3 +83,5 @@ public List<string> SendMail(string emailList)
 ```
 
 Success!  I always feel stupidly proud when I finally figure out an issue and make things work.  So thank you for reading this and letting me share my code with you.
+
+PS: This code gets revamped later when the needs of the code get changed, check out UpdateAndBcc Part 2!
