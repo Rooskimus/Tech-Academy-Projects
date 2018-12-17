@@ -1,0 +1,1 @@
+This was the final drill from my C# course; we had to choose something we hadn't done or been taught and make a demo of it.  I chose MVC Code-First applications.  This method really makes controlling your database via browser applications a cinch!
