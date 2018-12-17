@@ -4,7 +4,7 @@ This user story involved taking a button in a .cshtml file and changing the func
 
 ### Add CSHTML:
 
-'''cshtml
+```cshtml
 @Html.ActionLink("Email Students", "EmailWeeklyStudents", null, new { @class = "btn btn-primary" })
  
 @Html.ActionLink("Email Students", "EmailMonthlyStudents", null, new { @class = "btn btn-primary" })
@@ -12,7 +12,7 @@ This user story involved taking a button in a .cshtml file and changing the func
 @Html.ActionLink("Email Students", "EmailYearlyStudents", null, new { @class = "btn btn-primary" })
 
 @Html.ActionLink("Email Students", "EmailNewStudents", null, new { @class = "btn btn-primary", @id = "spaceFoot" })
-'''
+```
 
 Of course those buttons went to the correct location in the appropriate tables, not in a list as shown above.  The weekly and new buttons existed already so I used them as templates and modified them from there.
 
@@ -20,7 +20,7 @@ Next, I created the associated functions in the Controller.
 
 ### Adding Data-pulling and Emailing Subroutines:
 
-'''cs
+```cs
 
 public void EmailStudentsBcc(string[] emailList)
 	{
@@ -81,6 +81,6 @@ public ActionResult EmailNewStudents()
 		EmailStudentsBcc(emailList);
 		return RedirectToAction("Snapshot");
 	}
-'''
+```
 
 If you looked at my code for the UpdateAndBcc function I did earlier, you'll notice that the way I convert the emailList to a string from an array is the same.  The thing that oddly took me a while to figure out was the return RedirectToAction!  I was trying to use return View() with a number of variations and it just wasn't working right. Even when I tried to specify a relative location back to Snapshot the site threw an unhandled exception.  So I started poking through some of the other functions and saw the RedirectToAction in another controller and realized it was the perfect solution.  I should have remembered that one, but sometimes we get so stuck in trying to make the solution you *think* will work work that you forget to consider other options.  Lesson learned, and now we have another good block of functioning code for the project.

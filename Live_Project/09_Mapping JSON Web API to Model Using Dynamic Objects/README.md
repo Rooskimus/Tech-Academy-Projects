@@ -1,4 +1,4 @@
-#Mapping JSON Web API Data to Local Model
+# Mapping JSON Web API Data to Local Model
 
 This user story went down the rabbit hole in a big way.  I chose it because I had never dealt with APIs and it seemed like a good introduction.  I was supposed to go to the meetup.com API page and generate APIs for some meetup groups in the Denver area, then modify the location filter method in the controller so that if the student was from the DenverLocal or DenverRemote areas it would automatically populate the meetup partial view with meetup events from the Denver area.  Notice that my title above has little to do with that!  We'll get to that in a moment.  Just to demonstrate efficiency, I wanted to note how quickly I resolved the user story itself.
 
@@ -6,9 +6,9 @@ First I navigated to the api.meetups.com site and read through the page to figur
 
 Next I found the needed method in the controller, FilterLocationEvents.  I added another else if following the pattern that was already present as well as an else to cover any situation where the student being pulled wasn't a pre-defined location.  I chose to default them to Portland as that's where the Tech Academy is headquartered.
 
-###Original Code:
+### Original Code:
 
-'''cs
+```cs
 List<JPMeetupEvent> FilterLocationEvents(List<JPMeetupEvent> events)
         {
             // Determine Location of User
@@ -37,11 +37,11 @@ List<JPMeetupEvent> FilterLocationEvents(List<JPMeetupEvent> events)
             }
             return filteredEvents;
         }
-'''
+```
 
-#My Additions:
+### My Additions:
 
-'''cs
+```cs
 else if (StudentLocation == "DenverLocal" || StudentLocation == "DenverRemote")
             {
                 StudentLocation = "Denver";
@@ -50,13 +50,13 @@ else if (StudentLocation == "DenverLocal" || StudentLocation == "DenverRemote")
             {
                 StudentLocation = "Portland";  // Setting a default of Portland if no location comes through.
             }
-'''
+```
 
 Perfect!  So now all we need to do is test it with a Student at a Denver location.  So I dug through the student tables and found one.  It also took some time to figure out how the student table was linked to the login table because the emails on the test data to login were different from those in the student database.  Anyway, I spin up the solution and login as a Denver student and give it a go and...a Portland event comes up.  Just ONE portland event too, which is odd considering how many API requests we had in there.  So I was guessing the catch block was being activated in the _MeetupApi method.  Since I'll be referring to it a lot, here it is:
 
-#_MeetUpApi Original Code:
+### _MeetUpApi Original Code:
 
-'''cs
+```cs
 public PartialViewResult _MeetUpApi()
         {
             DateTime now = DateTime.Now;
@@ -142,7 +142,7 @@ public PartialViewResult _MeetUpApi()
                 return PartialView("_MeetUpApi", events);
             }
         }
-'''
+```
 
 OK, so something was giving a WebException error and causing that catch block to go.  So I put up break points all over the place and run it in debug mode.  The first error I get was with the signed APIs.  It told me I didn't have the authority to pull those API.  Well, this would be because after reading about it a signed API attaches your account to the API request.  So it would be pulling my personal login's view of a meetup.  The issue was that someone else had done signed, so when it reached my signed APIs suddenly it was pulling for a different user and it didn't like that.  Realizing that there was no need to have this attached to my personal Meetup account, I ditched the signed version.  I had to do some quick research on a lambda function that would let me delete everything after a certain character and then do a find and replace to make the change.  This was MUCH faster than going to the site and pulling each unsigned request manually or manually making the changes in the urls.
 
@@ -152,9 +152,9 @@ This meant that this section of code *never worked* in the first place.  Scrolli
 
 It didn't take much googling to figure out that the data recieved was in JSON format.  A little more research revealed that there are libraries for converting JSON data into C# objects.  The examples I was getting all involved creating a model that matched the incoming JSON data and then mapping it that way.  The only issue was, we didn't really need to save ALL of the data coming in to our database.  In fact, we didn't really want a model based on the JSON data at all, just what we already had in the JPMeetUpEvent class.  Also, I didn't want to make a model with as many properties as the data we were recieving had.  It would take a long time!  So I poked around about auto-generating a model and came across dynamic objects.  They take the data coming in and create a temporary object at runtime automatically based on the incoming JSON data.  It was perfect!  
 
-###Dynamic Objects FTW:
+### Dynamic Objects FTW:
 
-'''cs
+```cs
 foreach (var jsonString in responseStrings)  // This loop takes the Json information in the strings, converts them into dynamic objects and extracts meetup info from those objects.
                     {
                         dynamic meetupDynamic = System.Web.Helpers.Json.Decode(jsonString);  // Decodes JSON string into a dynamic object that automatically generates properties.
@@ -182,7 +182,7 @@ foreach (var jsonString in responseStrings)  // This loop takes the Json informa
                             
                             events.Add(jpEvent);
                         };
-'''
+```
 
 The library for making dynamic objects is beautifully simple, just one line of code.  Then I had to make a loop to go through each response and pull out the events from each response.  They were indexed very simply 0 to however many existed, so I created the for loop based on the length of the dynamic object.  I added a few comments along the way because I figure a lot of the other students who will be working on this in the future will never have seen dynamic objects or JSON data before.  I hadn't either!  And yet, I was still getting an error getting the city out of the venue.  It turned out that if there wasn't a venue selected, the dynamic object didn't generate the venue.city property at all and the program had no idea what is was looking for.  Hence the try/catch block.  If there were any errors getting the venue's city, the group always had a city attached to it which just needed a little parsing to remove the state.
 

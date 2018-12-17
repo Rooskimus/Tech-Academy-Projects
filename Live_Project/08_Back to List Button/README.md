@@ -1,4 +1,4 @@
-#Back To List Button
+# Back To List Button
 
 Today I figured that I had been doing a lot of back-end type stories and I should do some front-end.  It should be easy and I could knock out a few, right?  Well, front end can be just as confusing as back end!  When you're dealing with a complex MVC site such as this project, the inheritance of styling properties for any given element can be really tricky to track down.  Such was the case with this user story.
 
@@ -10,9 +10,9 @@ So what about a link with button styling?  I went back to the <a> tag format and
 
 So I gave up on the link tag, back to a button!  The button's issue was one of on-click functionality.  Luckily, that's something that we can add with a few choice lines of JavaScript.  After a little research and trial and error, I was able to get the button working.  Now, to make it line up and ideally be responsive.  I tried a lot of things here, but what I ended up going with was the "col-sm-3" class from Bootstrap.  I don't know why, but other column classes wouldn't make it budge.  My guess is specificity or proirity among the classes.  The size-based columns probably override any other stylings that would be affecting it.  However, I wasn't able to manipulate the buttons quite as I would like to have done when it came to scaling the screen size down.  At leasting using "form-control" and "form-group" classes I was able to make them stack and be the same size on smaller screens.  I wanted a  space between them but couldn't override whatever was locking them in place.  It functions and it looks OK, and that kind of styling was beyond the scope of my user story anyway.  So here's the code:
 
-###Original Code (Relevant Snippet):
+### Original Code (Relevant Snippet):
 
-'''cshtml
+```cshtml
 	@using (Html.BeginForm())
 	{
 	   [lots of other table elements]
@@ -31,11 +31,11 @@ So I gave up on the link tag, back to a button!  The button's issue was one of o
 
     </div>
 </div>
-'''
+```
 
-###My Changes
+### My Changes
 
-'''cshtml
+```cshtml
 	@using (Html.BeginForm())
 	{
 	   [lots of other table elements]
@@ -55,6 +55,6 @@ So I gave up on the link tag, back to a button!  The button's issue was one of o
         window.location.assign("@Url.Action("StudentIndex", "JPApplications")")
     }
 </script>
-'''
+```
 
 Thanks for following along!
