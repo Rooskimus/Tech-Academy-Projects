@@ -48,7 +48,7 @@ Here I essentially ensured that the method was "post" which was needed for sendi
 
 Next came modifying the JavaScript.  The original code, to be honest, did not work.  I don't know how it got a pass.  Take a look:
 
-###Original Code:
+### Original Code:
 
 ```html
 <script type="text/javascript">
@@ -74,7 +74,7 @@ Next came modifying the JavaScript.  The original code, to be honest, did not wo
 
 So first, the hide/show functionality I personally hate.  If a button makes something appear, it should be able to hide it too!  So I channged that to be a toggle.  Also, because I was having significant difficulty tracking down why the page was refreshing before I changed my approach to embrace the refresh (for now) I separated the hide/show functionality from the radio button functionality.  Next, look at the code for the radioValue and radiValue2 (sic).  They're being targeted by their values and then having those values assigned to a variable? It must have been returning some sort of value, because no matter what you clicked you would get the &body=Graduating text, so radioValue was always "true" as it were.  I the JS was sweating in the background trying to determine what kind of variable radioValue needed to be.  This would NOT have compiled at all in a strong-typed language.  But I digress, I had to fix the issues and make it call my function!
 
-###Andrew To The Rescue:
+### Andrew To The Rescue:
 
 ```html
 <!-- JS to toggle radio options when email button clicked-->
