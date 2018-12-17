@@ -1,0 +1,198 @@
+Before:
+
+@model JobPlacementDashboard.Models.JPHire
+
+<div>
+    <div class="container col-md-12">
+        <div class="banner">
+            <img src="https://www.pragnam.net/wp-content/uploads/2018/01/software-banner.jpg" alt="Software" class="full-width-image" title="" style="">
+            <div class="text-block">
+				<h1 id="toWhite">
+					Congratulations @Html.DisplayFor(model => model.ApplicationUser.FirstName) @Html.DisplayFor(model => model.ApplicationUser.LastName)
+					<br />
+					<br />
+					on your recent hire at @Html.DisplayFor(model => model.JPCompanyName)!
+				</h1>
+            </div>            
+        </div>
+    </div>
+
+    <dl class="dl-horizontal m">
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPJobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPJobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPJobCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPJobCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPSecondJob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPSecondJob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCareersPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCareersPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPHireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPHireDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.JPHireId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+After: 
+
+@model JobPlacementDashboard.ViewModels.JPHireWithNameViewModel
+
+<div>
+    <div class="container col-md-12">
+        <div class="banner">
+            <img src="https://www.pragnam.net/wp-content/uploads/2018/01/software-banner.jpg" alt="Software" class="full-width-image" title="" style="">
+            <div class="text-block">
+<h1 id="toWhite">
+	Congratulations @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+	<br />
+	<br />
+	on your recent hire at @Html.DisplayFor(model => model.Hire.JPCompanyName)!
+</h1>
+            </div>            
+        </div>
+    </div>
+
+    <dl class="dl-horizontal m">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPJobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPJobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPJobCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPJobCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPCompanyCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPCompanyCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPCompanyState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPCompanyState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPSecondJob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPSecondJob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPCareersPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPCareersPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire.JPHireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hire.JPHireDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.JPHireId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

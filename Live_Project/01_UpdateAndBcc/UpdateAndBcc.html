@@ -1,0 +1,10 @@
+<!-- Before: !-->
+ <form style="display: inline" action="mailto:?bcc=@emailList" method="post">
+        <button class="btn btn-primary">Email Students</button>
+</form>
+		
+<!-- After: !-->
+
+<form style="display: inline" action="@Url.Action("UpdateAndBcc", new { emailList })" method="post">
+        <button class="btn btn-primary">Email Students</button>
+</form>

@@ -1,0 +1,85 @@
+Before:
+<form style="display: inline" action="mailto:?bcc=@emailList" method="post">
+	<button class="btn btn-primary">Email Students</button>
+</form>
+
+<div id="email-students-popup">
+	<h6>What is your email in regards to?</h6>
+	<form>
+		<input type="radio" name="email" value="graduating"/>Graduating<br />
+		<input type="radio" name="email" value="applying"/>Applying<br />
+		<button class="btn btn-primary"id="email-students-submit" type="button">Submit</button>
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	$("#email-students-popup").hide();
+	$("form#email-students").click(function () {
+		$("#email-students-popup").show();
+	});
+	$("#email-students-submit").click(function () {
+		var radioValue = $("input[value='graduating']:checked").val();
+		var radiValue2 = $("input[value='applying']:checked").val();
+		if (radioValue) {
+			window.open('mailto:?bcc=@emailList?&body=Graduating');
+		}
+		else if (radiValue2) {
+			window.open('mailto:?bcc=@emailList?&body=Applying');
+		}
+		else {
+			alert("Please select an option.");
+		}
+	});
+</script>
+
+After:
+<div id="email-students-popup">
+	<h6 class="mt-2">What is your email in regard to?</h6>
+	<form id="submit-form" method="post">
+		<input type="radio" name="email" value="graduating" checked="checked" />Graduating<br />
+		<input type="radio" name="email" value="applying" />Applying<br /><br />
+		<button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
+	</form>
+</div>
+
+<!-- JS to toggle radio options when email button clicked-->
+<script type="text/javascript">
+	$("#email-students-popup").hide();
+	$("#email-students").click(function () {
+		$("#email-students-popup").toggle();
+	});
+</script>
+
+<!-- JS for Sending Email -->
+<script type="text/javascript">
+	var radioInput = "default"
+	$("#submit-form").submit(function () {
+		radioInput = $("input[name='email']:checked").val();
+		if (radioInput == "graduating") {
+
+				$("#submit-form").attr("action", "@Html.Raw(@Url.Action("UpdateAndBcc", "JPStudentRundown", new { emailList = emailList , body = gradBody }))" );
+				document.getElementById("submit-email").submit();
+			}
+			else if (radioInput == "applying") {
+				$("#submit-form").attr("action", "@Html.Raw(@Url.Action("UpdateAndBcc", "JPStudentRundown", new { emailList =emailList, body = applyBody }))" );
+				document.getElementById("submit-email").submit();
+			}
+			else {
+				alert("Something went wrong");
+			}
+	});
+
+</script>
+
+I also had to modify the emailList so there was no trailing comma and assign placeholder body text:
+ @{
+		int strLength = emailList.Length;
+		emailList = emailList.Substring(0, (strLength - 1)); //removes last comma
+	}
+ 
+ @{
+        // TODO: Assign real body text here. Perhaps make a function to convert .txt to string so in the future putting a .txt in the right file will change the content?
+        string gradBody = "&body=Graduating%20Text";
+        string applyBody = "&body=Applying%20Text";
+    }
