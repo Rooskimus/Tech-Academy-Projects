@@ -3,7 +3,7 @@
 A story I chose to tackle involved making a button that sends emails to a list of mailing addresses call a function that ensures the latest updated email information is pulled and then mails the list as a BCC.  It was a great opportunity to get some practice in HTML, MVC, and C#.  The original code was simply done in HTML:
 
 ### Before:
-'''cshtml
+''' cshtml
  <form style="display: inline" action="mailto:?bcc=@emailList" method="post">
         <button class="btn btn-primary">Email Students</button>
 </form>
@@ -13,7 +13,7 @@ I decided my approach would be to create a new subroutine in the controller that
 		
 ### After:
 
-'''cshtml
+''' cshtml
 <form style="display: inline" action="@Url.Action("UpdateAndBcc", new { emailList })" method="post">
         <button class="btn btn-primary">Email Students</button>
 </form>
@@ -25,7 +25,7 @@ Next, I had to create my "UpdateAndBcc" subroutine in the controller.  I ended u
 
 ### UpdateAndBCC Function:
 
-'''cs
+''' cs
 public void UpdateAndBcc(string emailList)
         {
             //Calls the SendMail function above to ensure latest contact info is used then sends the updated list to email app as BCC.
@@ -41,7 +41,7 @@ Again, I had to look into syntax in order to make this work.  I tried creating m
 
 ### SendMail Before:
 
-'''cs
+''' cs
 public List<string> SendMail(string emailList)
         {
             List<string> listOfEmails = emailList.Split(',').ToList();
@@ -59,7 +59,7 @@ public List<string> SendMail(string emailList)
 
 ### Sendmail After:
 
-'''cs
+''' cs
 public List<string> SendMail(string emailList)
         {
             List<string> listOfEmails = emailList.Split(',').ToList();
