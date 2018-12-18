@@ -14,9 +14,7 @@ This user story involved taking a button in a .cshtml file and changing the func
 @Html.ActionLink("Email Students", "EmailNewStudents", null, new { @class = "btn btn-primary", @id = "spaceFoot" })
 ```
 
-Of course those buttons went to the correct location in the appropriate tables, not in a list as shown above.  The weekly and new buttons existed already so I used them as templates and modified them from there.
-
-Next, I created the associated functions in the Controller.
+Of course those buttons went to the correct location in the appropriate tables, not in a list as shown above.  The weekly and new buttons existed already so I used them as templates and modified them from there.  Next, I created the associated functions in the Controller.
 
 ### Adding Data-pulling and Emailing Subroutines:
 

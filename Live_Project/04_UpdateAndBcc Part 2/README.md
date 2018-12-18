@@ -1,6 +1,6 @@
 ### Using Radio Buttons to Change Form Action and Pass Parameters to Controller
 
-That's a mouthful!  But that's about as close to summarizing what I did in a single sentence as I can get.  So, if you've looked at some of my other stories from this project you will find a UpdateAndBcc function I made to recieve an email list from the View, pass it through some existing functions in the Controller that ensured updated email addresses are pulled from the database, and then send the list to a mail client.  It turns out that concurrently someone was working on a piece of JavaScript that would take the selected radio button (applying or graduating) and send a pre-written body text along with the email list.
+That's a mouthful!  But that's about as close to summarizing what I did in a single sentence as I can get.  So, if you've looked at some of my other stories from this project you will find a UpdateAndBcc function I made to recieve an email list from the View, pass it through some existing functions in the Controller that ensured updated email addresses are pulled from the database, and then send the list to a mail client.  It turns out that concurrently someone was working on a piece of JavaScript that would take a selected radio button (applying or graduating) and send a pre-written body text along with the email list.
 
 Since we were working on it at the same time, their code didn't call my function and nothing was actually being passed through the controller, hence updated email addresses were not being used.  That's a problem!  Originally the issue had been pushed back to me because when you clicked "Send Email" it would redirect you back to the same page making it so you couldn't see the radio buttons that appeared before the page refreshed.  But really, my button should no longer have been a submit form button anyway because there were some more choices that should happen before that step.  So first things first, I removed all form functionality from my original button.
 
@@ -48,7 +48,7 @@ Here I essentially ensured that the method was "post" which was needed for sendi
 
 Next came modifying the JavaScript.  The original code, to be honest, did not work.  I don't know how it got a pass.  Take a look:
 
-###Original Code:
+### Original Code:
 
 ```html
 <script type="text/javascript">
@@ -74,7 +74,7 @@ Next came modifying the JavaScript.  The original code, to be honest, did not wo
 
 So first, the hide/show functionality I personally hate.  If a button makes something appear, it should be able to hide it too!  So I channged that to be a toggle.  Also, because I was having significant difficulty tracking down why the page was refreshing before I changed my approach to embrace the refresh (for now) I separated the hide/show functionality from the radio button functionality.  Next, look at the code for the radioValue and radiValue2 (sic).  They're being targeted by their values and then having those values assigned to a variable? It must have been returning some sort of value, because no matter what you clicked you would get the &body=Graduating text, so radioValue was always "true" as it were.  I the JS was sweating in the background trying to determine what kind of variable radioValue needed to be.  This would NOT have compiled at all in a strong-typed language.  But I digress, I had to fix the issues and make it call my function!
 
-###Andrew To The Rescue:
+### Andrew To The Rescue:
 
 ```html
 <!-- JS to toggle radio options when email button clicked-->

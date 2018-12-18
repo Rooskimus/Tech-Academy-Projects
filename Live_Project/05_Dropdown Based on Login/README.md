@@ -1,6 +1,6 @@
 # Navbar Options based on Login Authentication
 
-This was another story I wanted to tackle because it sounded tougher than it really was due to having already been implemented in the code.  Basically, there were two options, "Log Data" and "MyApplications" that needed to only appear when a student was logged in to a page.  So, I located the partial view that contained the navbar and found those elements in a set of list tags.  All I had to do was wrap them in an if statment:
+This was another story I wanted to tackle because it was about a topic I hadn't encountered before.  But, it sounded tougher than it really was due to having already been implemented in the code.  Basically, there were two options, "Log Data" and "MyApplications" that needed to only appear when a student was logged in to a page.  So, I located the partial view that contained the navbar and found those elements in a set of list tags.  All I had to do was wrap them in an if statment:
 
 ### Before:
 ```cshtml
@@ -48,4 +48,4 @@ This was another story I wanted to tackle because it sounded tougher than it rea
 		}
 ```
 
-Because MVC already includs a property for checking authentication, I just had to call it as you see above.
+Because MVC already includes a property for checking authentication, I just had to call it as you see above.
