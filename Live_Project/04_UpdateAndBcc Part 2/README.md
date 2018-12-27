@@ -110,6 +110,8 @@ So first, the hide/show functionality I personally hate.  If a button makes some
 First you may notice the convenient labels added for debugging in Chrome.  It's a whole lot easier to pull up and look at your code with those!  Also we now have a .toggle function instead of .show for cleaning up the screen on those accidental clicks.  In the JS for sending email I had to define the variable for the radio button outside of the click function so that both branches of my if could use the same variable name.  Next I targeted the submit action of the form, had it assign the value of the checked radio button at that point then perform an action based on the result.  Inside my if statments I used JQuery to add an action attribute to the form tag that would cause generate URL that would pass the needed parameters over to my function in the controller.  The tricky thing is, you can't send a JavaScript variable into your Razor syntax.  This is because the Razor syntax is carried out by the server when the page is requested and sent.  It's done compiling before you can click on anything and cannot be dynamically generated after the page has begun.  So I had to pre-define the desired results in the HTML above.  I added:
 
 ### Razor Syntax Variables:
+
+```cshtml
 @{
 	int strLength = emailList.Length;
 	emailList = emailList.Substring(0, (strLength - 1)); //removes last comma
@@ -120,6 +122,7 @@ First you may notice the convenient labels added for debugging in Chrome.  It's 
         string gradBody = "&body=Graduating%20Text";
         string applyBody = "&body=Applying%20Text";
     }
+```
 
 So the first part addressed an issue where the emailList was created by concatenating with a "," at the end of each item.  That comma would through off appending any body text, so I added the code there to remove the trailing comma.  Second, I defined the text that would be sent over for graduating and applying using some placeholders.  Now if you look back to the JavaScript above you'll see that I assign body as either gradBody or applyBody based on the radio option selected in my if/else.  Now we're in business.  Kind of.  I had to modify my function to take to parameters.  I also went ahead and removed some code I added to SendMail that controlled for the commas at the end previously since I changed that above at the source.
 
