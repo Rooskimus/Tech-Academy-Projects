@@ -85,62 +85,71 @@ public PartialViewResult _MeetUpApi()
                         }
                     }
 
-                    foreach (var jsonString in responseStrings)  // This loop takes the Json information in the strings, converts them into dynamic objects and extracts meetup info from those objects.
-                    {
-                        dynamic meetupDynamic = System.Web.Helpers.Json.Decode(jsonString);  // Decodes JSON string into a dynamic object that automatically generates properties.
-                        int jsonObjectCount = meetupDynamic.Length;
-                        for (int i = 0; i < jsonObjectCount; i++)  // This loop gets the JPMeetupEvent data from the dynamic class.
-                        {
-                            JPMeetupEvent jpEvent = new JPMeetupEvent()
-                            {
-                                JPEventName = meetupDynamic[i].name,  // The .name, .link, etc are the property names assigned by the decoder based on the JSON API string.
-                                JPEventLink = meetupDynamic[i].link,
-                                JPEventDate = Convert.ToDateTime(meetupDynamic[i].local_date + " " + meetupDynamic[i].local_time),
-                                JPDateCreated = now                                
-                            };
-
-                            try  // If no city has been selected for the event, no venue.city property is created and an error is thrown.
-                            {
-                                jpEvent.JPLocation = meetupDynamic[i].venue.city;
-                            }
-                            catch  // Get city from API group info instead.
-                            {
-                                string city = meetupDynamic[i].group.localized_location; // This comes in City, ST format and needs parsing.
-                                city = city.Substring(0, city.LastIndexOf(","));
-                                jpEvent.JPLocation = city;
-                            }
-                            
-                            events.Add(jpEvent);
-                        };
-
-                    }
-
-                    //remove old events from table
-                    db.JPMeetupEvents.RemoveRange(db.JPMeetupEvents);
-                    db.JPMeetupEvents.AddRange(events);
-
-                    db.SaveChanges();
-
-                    //Filter events for current user
-                    events = FilterEvents(events);
-                }
-
-                //if there is a web exception, load events from the database instead
-                //this try/catch block may no longer be necessary because we're controlling API pull frequency in the if/else.
-                catch (WebException)
+                foreach (var str in responseStrings)
                 {
-                    events = GetStoredEvents();
-                    events = FilterEvents(events);
+                    events.AddRange(ConvertMeetupStringToJPMeetupEvents(str));
                 }
+                events = FilterPastEvents(events);
+                events = FilterDuplicateEvents(events);
+                events = FilterLocationEvents(events);
+                events = SortDates(events);
 
-               return PartialView("_MeetUpApi", events);
+                //remove old events from table
+                db.JPMeetupEvents.RemoveRange(db.JPMeetupEvents);
+                db.JPMeetupEvents.AddRange(events);
+
+                db.SaveChanges();
             }
-            else // If events have been pulled in the last 2 hours, use those events
+
+            //if there is a web exception, we need to load events from the database instead
+            catch (WebException)
             {
-                var events = GetStoredEvents();
-                events = FilterEvents(events);
-                return PartialView("_MeetUpApi", events);
+                foreach (var meetupEvent in db.JPMeetupEvents)
+                {
+                    events.Add(meetupEvent);
+                }
+                    events = FilterPastEvents(events);
             }
+            return PartialView("_MeetUpApi", events);
+        }
+        
+        List<JPMeetupEvent> ConvertMeetupStringToJPMeetupEvents(string meetup)
+        {
+            var events = new List<JPMeetupEvent>();
+            var meetupSB = new StringBuilder(meetup);            
+            while (true)
+            {
+                var meetupEvent = new JPMeetupEvent();
+
+                int nameIndex = meetupSB.ToString().IndexOf("\"name\"");
+                if (nameIndex == -1) break;
+                meetupSB.Remove(0, nameIndex + 8);
+                int commaIndex = meetupSB.ToString().IndexOf(",");
+                meetupEvent.JPEventName = meetupSB.ToString().Substring(0,commaIndex - 1);
+
+                int dateIndex = meetupSB.ToString().IndexOf("\"local_date\"");                
+                meetupSB.Remove(0, dateIndex + 14);
+                commaIndex = meetupSB.ToString().IndexOf(",");
+                var date = DateTime.Parse(meetupSB.ToString().Substring(0, commaIndex - 1));
+                meetupEvent.JPEventDate = date;
+
+                int locationIndex = meetupSB.ToString().IndexOf("\"city\"");
+                meetupSB.Remove(0, locationIndex + 8);
+                commaIndex = meetupSB.ToString().IndexOf(",");
+                meetupEvent.JPLocation = meetupSB.ToString().Substring(0, commaIndex - 1);
+
+                int linkIndex = meetupSB.ToString().IndexOf("\"link\"");              
+                meetupSB.Remove(0, linkIndex + 8);
+                commaIndex = meetupSB.ToString().IndexOf(",");
+                meetupEvent.JPEventLink = meetupSB.ToString().Substring(0, commaIndex - 1);
+
+
+
+                events.Add(meetupEvent);
+            }
+
+
+            return events;
         }
 ```
 
@@ -184,7 +193,7 @@ foreach (var jsonString in responseStrings)  // This loop takes the Json informa
                         };
 ```
 
-The library for making dynamic objects (Newtonsoft.Json) is beautifully simple, just one line of code.  Then I had to make a loop to go through each response string and pull out the events.  They were indexed very simply 0 to however many existed, so I created the for loop based on the length of the dynamic object.  I added a few comments along the way because I figure a lot of the other students who will be working on this in the future will never have seen dynamic objects or JSON data before.  I hadn't either!  And yet, I was still getting an error getting the city out of the venue.  It turned out that if there wasn't a venue selected, the dynamic object didn't generate the venue.city property at all and the program had no idea what is was looking for.  Hence the try/catch block I added.  If there were any errors getting the venue's city, the group always had a city attached to it which just needed a little parsing to remove the state.
+The library for making dynamic objects (Newtonsoft.Json) is beautifully simple, just one line of code.  Using it allowed me to remove that whole "ConvertMeetupStringToJPMeetupEvents" method.  Then I had to make a loop to go through each response string and pull out the events.  They were indexed very simply 0 to however many existed, so I created the for loop based on the length of the dynamic object.  I added a few comments along the way because I figure a lot of the other students who will be working on this in the future will never have seen dynamic objects or JSON data before.  I hadn't either!  And yet, I was still getting an error getting the city out of the venue.  It turned out that if there wasn't a venue selected, the dynamic object didn't generate the venue.city property at all and the program had no idea what is was looking for.  Hence the try/catch block I added.  If there were any errors getting the venue's city, the group always had a city attached to it which just needed a little parsing to remove the state.
 
 This whole chunk of code may be eligible to become its own method, but because we only want to do this when we pull new API requests and we only want to do that every so often so as not to get locked out by the server I felt it was best to leave it within the MeetUpApi method.
 
